@@ -31,6 +31,8 @@ app.post('/login', async (req, res) => {
       .single(); // Get just one result
  // Fetch user by email
 
+    const email = data[0].email;
+
     if (error) {
       return res.status(400).json({ error: 'User not found' });
     }
