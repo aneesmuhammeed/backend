@@ -26,7 +26,7 @@ app.post('/login', async (req, res) => {
     const { data, error } = await supabase
       .from('users')
       .select('email')
-      .order('created_at', { ascending: false }) // Order by latest
+      .order('id', { ascending: false }) // Order by latest
       .limit(1)
  // Fetch user by email
 
