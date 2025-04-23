@@ -28,7 +28,6 @@ app.post('/login', async (req, res) => {
       .select('email')
       .order('created_at', { ascending: false }) // Order by latest
       .limit(1)
-      .single(); // Get just one result
  // Fetch user by email
 
     const email = data[0].email;
