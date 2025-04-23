@@ -19,15 +19,17 @@ app.use(express.json());
 
 // Route to handle login and send email
 app.post('/login', async (req, res) => {
-  const { email } = req.body; // Assuming the email is sent with the login request
+ // Assuming the email is sent with the login request
 
   try {
     // Check if the user exists in Supabase (or you could validate the login in a different way)
     const { data, error } = await supabase
       .from('users')
       .select('email')
-      .eq('email', email)
-      .single(); // Fetch user by email
+      .order('created_at', { ascending: false }) // Order by latest
+      .limit(1)
+      .single(); // Get just one result
+ // Fetch user by email
 
     if (error) {
       return res.status(400).json({ error: 'User not found' });
